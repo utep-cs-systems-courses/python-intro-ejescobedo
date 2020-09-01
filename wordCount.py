@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 
 def get_word_list(text):
@@ -14,20 +15,23 @@ def get_word_list(text):
                 word_list.append(curr_wrd)
                 curr_wrd = ''
     return word_list
-
-inputFile = sys.argv[1]
-outputFile = sys.argv[2]
-f = open(inputFile, 'r', encoding="utf8")
-text = f.read()
-f.close()
-text = get_word_list(text)
-text = sorted(text)
-dc = {}
-for word in text:
-	if word not in dc:
-		dc[word] = 1
-	else:
-		dc[word] += 1
-f = open(outputFile, "w")
-for word in dc:
-	f.write(word+" "+str(dc.get(word))+"\n")
+def main():
+    inputFile = sys.argv[1]
+    outputFile = sys.argv[2]
+    f = open(inputFile, 'r', encoding="utf8")
+    text = f.read()
+    f.close()
+    text = get_word_list(text)
+    text = sorted(text)
+    dc = {}
+    for word in text:
+        if word not in dc:
+            dc[word] = 1
+        else:
+            dc[word] += 1
+    f = open(outputFile, "w")
+    for word in dc:
+        f.write(word+" "+str(dc.get(word))+"\n")
+    f.close()
+if __name__== "__main__":
+  main()
